@@ -1,19 +1,61 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
+import {createStackNavigator, createMaterialTopTabNavigator} from 'react-navigation';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Decks from './src/components/Decks';
 import NewDeck from './src/components/NewDeck';
 // import Question from './src/components/Question';
 // import Quiz from './src/components/Quiz';
+import { MaterialTopTabBar } from 'react-navigation-tabs';
+import { Constants } from 'expo';
 
-const Tabs = createBottomTabNavigator({
-    Decks: {
-        screen: Decks
+const HEADER_HEIGHT = 64;
+
+function MaterialTopTabBarWithStatusBar(props) {
+    return (
+        <View
+            style={{
+                paddingTop: Constants.statusBarHeight,
+                backgroundColor: '#2196f3',
+            }}
+        >
+            <MaterialTopTabBar {...props} jumpToIndex={() => {}} />
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    stackHeader: {
+        height: HEADER_HEIGHT,
     },
-    NewDeck: {
-        screen: NewDeck
+    tab: {
+        height: HEADER_HEIGHT,
     },
 });
+
+const Tabs = createMaterialTopTabNavigator(
+    {
+        Decks: {
+            screen: Decks,
+            navigationOptions: {
+                tabBarLabel: 'Decks'
+            }
+        },
+        NewDeck: {
+            screen: NewDeck,
+            navigationOptions: {
+                tabBarLabel: 'New Deck'
+            }
+        },
+    },
+    {
+        tabBarComponent: MaterialTopTabBarWithStatusBar,
+        tabBarOptions: {
+            tabStyle: styles.tab,
+        },
+    }
+
+);
 
 // const Tabs = createBottomTabNavigator({
 //         DeckList: {

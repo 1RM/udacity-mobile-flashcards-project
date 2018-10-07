@@ -19,9 +19,10 @@ class Decks extends Component {
     }
 
     render() {
+
         return (
-            <View>
-                <Text>Decks View</Text>
+            <View style={{flex: 1}}>
+                <Text>Decks Vie</Text>
             </View>
         )
     }
