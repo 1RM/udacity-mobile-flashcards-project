@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import {View, Stylesheet, Text} from 'react-native';
 import {getDecks} from '../utils/api';
+import { Container, Header, Content, Card, CardItem, Body, Text, Left, Right } from 'native-base';
 
 class Decks extends Component {
 
     state = {
-        decks: []
+        decks: {}
     };
 
     async componentDidMount() {
         const decks = await getDecks();
 
-        console.log(decks);
+        // console.log(decks);
 
         this.setState({
             decks: decks
@@ -19,12 +19,38 @@ class Decks extends Component {
     }
 
     render() {
+        const decks = this.state.decks;
 
-        return (
-            <View style={{flex: 1}}>
-                <Text>Decks Vie</Text>
-            </View>
-        )
+        if (decks) {
+            return (
+
+                <Container>
+                    <Content padder>
+                        {
+                            Object.keys(decks).map((key) => {
+
+                                return <Card key={key}>
+                                    <CardItem button={true} bordered>
+                                        <Left>
+                                            <Text>{ decks[key].title }</Text>
+                                        </Left>
+                                        <Right>
+                                            <Text>{ decks[key].questions.length } Cards</Text>
+                                        </Right>
+                                    </CardItem>
+                                </Card>;
+                            })
+                        }
+                    </Content>
+                </Container>
+            )
+        } else {
+            return (
+                <Container/>
+            );
+        }
+
+
     }
 }
 

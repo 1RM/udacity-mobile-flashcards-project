@@ -11,6 +11,15 @@ import { Constants } from 'expo';
 
 const HEADER_HEIGHT = 64;
 
+const styles = StyleSheet.create({
+    stackHeader: {
+        height: HEADER_HEIGHT,
+    },
+    tab: {
+        height: HEADER_HEIGHT,
+    },
+});
+
 function MaterialTopTabBarWithStatusBar(props) {
     return (
         <View
@@ -23,15 +32,6 @@ function MaterialTopTabBarWithStatusBar(props) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    stackHeader: {
-        height: HEADER_HEIGHT,
-    },
-    tab: {
-        height: HEADER_HEIGHT,
-    },
-});
 
 const Tabs = createMaterialTopTabNavigator(
     {
@@ -101,14 +101,16 @@ const Tabs = createMaterialTopTabNavigator(
 // });
 
 class App extends Component {
+
     componentDidMount() {
 
     }
 
     render() {
         return (
-            <View style={{flex: 1}}><Tabs/></View>
-
+            <View style={{flex: 1}}>
+                <Tabs/>
+            </View>
         );
     }
 }
