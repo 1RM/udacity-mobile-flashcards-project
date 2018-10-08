@@ -11,8 +11,6 @@ class Decks extends Component {
     async componentDidMount() {
         const decks = await getDecks();
 
-        // console.log(decks);
-
         this.setState({
             decks: decks
         });
@@ -23,14 +21,12 @@ class Decks extends Component {
 
         if (decks) {
             return (
-
                 <Container>
                     <Content padder>
                         {
                             Object.keys(decks).map((key) => {
-
                                 return <Card key={key}>
-                                    <CardItem button={true} bordered>
+                                    <CardItem button={true} bordered onPress={() => this.props.navigation.navigate('DeckInfo', { 'deck': decks[key], 'key': key})}>
                                         <Left>
                                             <Text>{ decks[key].title }</Text>
                                         </Left>
@@ -49,8 +45,6 @@ class Decks extends Component {
                 <Container/>
             );
         }
-
-
     }
 }
 
