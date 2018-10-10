@@ -83,7 +83,6 @@ class NewQuestion extends Component {
                                 <Button primary block onPress={(event) => this.handleNewQuestion(event)}>
                                     <Text>Submit</Text>
                                 </Button>
-
                             </Form>
                             </Body>
                         </CardItem>

@@ -84,9 +84,6 @@ class Quiz extends Component {
                                             </Body>
                                         )}
                                     </CardItem>
-
-
-
                                     <CardItem header bordered>
                                         <Body style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
                                             <Button success style={{margin: 5}}

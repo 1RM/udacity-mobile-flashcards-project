@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-// import {} from 'react-native';
 import {createNewDeck} from '../utils/api';
-import { Container, Header, Content, Form, Item, Input, Button, Card, CardItem, Label, Body, Text } from 'native-base';
+import { Container, Content, Form, Item, Input, Button, Card, CardItem, Label, Body, Text } from 'native-base';
 import {Alert} from "react-native";
 
 class NewDeck extends Component {
@@ -59,11 +58,9 @@ class NewDeck extends Component {
                                     <Label style={{fontWeight: "bold"}}>Title:</Label>
                                     <Input onChangeText={(text) => this.setState({title: text})}/>
                                 </Item>
-
                                 <Button primary block onPress={(event) => this.handleAddDeck(event)}>
                                     <Text>Submit</Text>
                                 </Button>
-
                             </Form>
                             </Body>
                         </CardItem>
