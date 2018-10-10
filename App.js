@@ -4,8 +4,8 @@ import {createStackNavigator, createMaterialTopTabNavigator} from 'react-navigat
 import Decks from './src/components/Decks';
 import NewDeck from './src/components/NewDeck';
 import DeckInfo from './src/components/DeckInfo';
-import AddQuestion from './src/components/AddQuestion';
-// import Quiz from './src/components/Quiz';
+import NewQuestion from './src/components/NewQuestion';
+import Quiz from './src/components/Quiz';
 
 const Tabs = createMaterialTopTabNavigator(
     {
@@ -35,17 +35,17 @@ const AppNavigator = createStackNavigator({
             headerTintColor: '#000',
         },
     },
-    // Quiz: {
-    //     screen: Quiz,
-    //     navigationOptions: {
-    //         title: 'Quiz',
-    //         headerTintColor: '#000',
-    //     },
-    // },
-    AddQuestion: {
-        screen: AddQuestion,
+    Quiz: {
+        screen: Quiz,
         navigationOptions: {
-            title: 'Add Question',
+            title: 'Quiz',
+            headerTintColor: '#000',
+        },
+    },
+    NewQuestion: {
+        screen: NewQuestion,
+        navigationOptions: {
+            title: 'New Question',
             headerTintColor: '#000',
         },
     },

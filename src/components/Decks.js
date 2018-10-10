@@ -5,10 +5,25 @@ import { Container, Header, Content, Card, CardItem, Body, Text, Left, Right } f
 class Decks extends Component {
 
     state = {
-        decks: {}
+        decks: []
     };
 
     async componentDidMount() {
+        const decks = await getDecks();
+
+        this.setState({
+            decks: decks
+        });
+    }
+
+    /**
+     * Need this so that when we route back to this component
+     * from `NewDeck` component, the deck information
+     * will be re-fetched from Asyncstorage.
+     *
+     * @returns {Promise<void>}
+     */
+    async componentWillUpdate() {
         const decks = await getDecks();
 
         this.setState({
@@ -24,14 +39,14 @@ class Decks extends Component {
                 <Container>
                     <Content padder>
                         {
-                            Object.keys(decks).map((key) => {
-                                return <Card key={key}>
-                                    <CardItem button={true} bordered onPress={() => this.props.navigation.navigate('DeckInfo', { 'deck': decks[key], 'key': key})}>
+                            Object.keys(decks).map((deckId) => {
+                                return <Card key={deckId}>
+                                    <CardItem button={true} bordered onPress={() => this.props.navigation.navigate('DeckInfo', { 'deckId': deckId})}>
                                         <Left>
-                                            <Text>{ decks[key].title }</Text>
+                                            <Text>{ decks[deckId].title }</Text>
                                         </Left>
                                         <Right>
-                                            <Text>{ decks[key].questions.length } Cards</Text>
+                                            <Text>{ decks[deckId].questions.length } Cards</Text>
                                         </Right>
                                     </CardItem>
                                 </Card>;
@@ -42,7 +57,7 @@ class Decks extends Component {
             )
         } else {
             return (
-                <Container/>
+                <Container />
             );
         }
     }

@@ -16,6 +16,7 @@ let data = {
             }
         ]
     },
+
     JavaScript: {
         title: 'JavaScript',
         questions: [
@@ -25,7 +26,6 @@ let data = {
             }
         ]
     }
-
 };
 
 export function getDecks() {
@@ -40,8 +40,8 @@ export function getDecks() {
         });
 }
 
-export function saveDeckTitle(title) {
-    return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(title));
+export function createNewDeck(deck) {
+    return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(deck));
 }
 
 export function addCardToDeck(card, deckId) {
