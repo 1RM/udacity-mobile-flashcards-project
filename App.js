@@ -6,6 +6,7 @@ import NewDeck from './src/components/NewDeck';
 import DeckInfo from './src/components/DeckInfo';
 import NewQuestion from './src/components/NewQuestion';
 import Quiz from './src/components/Quiz';
+import {setLocalNotification} from "./src/utils/api";
 
 const Tabs = createMaterialTopTabNavigator(
     {
@@ -52,6 +53,11 @@ const AppNavigator = createStackNavigator({
 });
 
 class App extends Component {
+
+    componentDidMount() {
+        setLocalNotification();
+    }
+
     render() {
         return (
             <View style={{flex: 1}}>

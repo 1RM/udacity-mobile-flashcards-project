@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Content, Card, CardItem, Text, Left, Right, Button, Body} from 'native-base';
+import {setLocalNotification, clearLocalNotifications } from '../utils/api';
 
 class Quiz extends Component {
 
@@ -7,6 +8,11 @@ class Quiz extends Component {
         correctAnswers: 0,
         questionIndex: 0,
         showingAnswer: false
+    };
+
+    handleNotifications = () => {
+      clearLocalNotifications()
+          .then(setLocalNotification);
     };
 
     handleCorrectAnswer = () => {
@@ -37,6 +43,8 @@ class Quiz extends Component {
     };
 
     handleRestartQuiz = () => {
+        this.handleNotifications();
+
         this.setState({
             correctAnswers: 0,
             questionIndex: 0,
@@ -118,7 +126,10 @@ class Quiz extends Component {
                                             <Text>Restart Quiz</Text>
                                         </Button>
                                         <Button primary style={{margin: 5}}
-                                                onPress={() => this.props.navigation.navigate('Decks')}>
+                                                onPress={() => {
+                                                    this.handleNotifications();
+                                                    this.props.navigation.navigate('Decks');
+                                                }}>
                                             <Text>Back to Home</Text>
                                         </Button>
                                     </CardItem>
