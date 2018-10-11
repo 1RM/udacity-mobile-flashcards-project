@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {createNewDeck} from '../utils/api';
-import { Container, Content, Form, Item, Input, Button, Card, CardItem, Label, Body, Text } from 'native-base';
+import {Container, Content, Form, Item, Input, Button, Card, CardItem, Label, Body, Text} from 'native-base';
 import {Alert} from "react-native";
 
 class NewDeck extends Component {

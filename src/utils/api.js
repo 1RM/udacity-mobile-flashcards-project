@@ -91,24 +91,24 @@ export function setLocalNotification() {
             if (data == null) {
                 Permissions.askAsync(Permissions.Notifications)
                     .then(({status}) => {
-                       if (status === 'granted') {
-                           Notifications.cancelAllScheduledNotificationsAsync();
+                        if (status === 'granted') {
+                            Notifications.cancelAllScheduledNotificationsAsync();
 
-                           let tomorrow = new Date();
-                           tomorrow.setDate(tomorrow.getDate() + 1);
-                           tomorrow.setHours(17);
-                           tomorrow.setMinutes(0);
+                            let tomorrow = new Date();
+                            tomorrow.setDate(tomorrow.getDate() + 1);
+                            tomorrow.setHours(17);
+                            tomorrow.setMinutes(0);
 
-                           Notifications.scheduleLocalNotificationAsync(
-                               createNotification(),
-                               {
-                                   time: tomorrow,
-                                   repeat: 'day'
-                               }
-                           );
+                            Notifications.scheduleLocalNotificationAsync(
+                                createNotification(),
+                                {
+                                    time: tomorrow,
+                                    repeat: 'day'
+                                }
+                            );
 
-                           AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
-                       }
+                            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+                        }
                     });
             }
         })

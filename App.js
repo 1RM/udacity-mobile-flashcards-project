@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import {createStackNavigator, createMaterialTopTabNavigator} from 'react-navigation';
 import Decks from './src/components/Decks';
 import NewDeck from './src/components/NewDeck';
