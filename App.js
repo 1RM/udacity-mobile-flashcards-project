@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import {createStackNavigator, createMaterialTopTabNavigator} from 'react-navigation';
+import {Font, AppLoading} from 'expo';
 import Decks from './src/components/Decks';
 import NewDeck from './src/components/NewDeck';
 import DeckInfo from './src/components/DeckInfo';
@@ -54,14 +55,40 @@ const AppNavigator = createStackNavigator({
 
 class App extends Component {
 
-    componentDidMount() {
+    state = {
+        loading: true
+    };
+
+    /**
+     * Given the use of Native Base, there are some font issues with Android devices
+     * and I had to use the workaround here to get things to behave:
+     * https://github.com/GeekyAnts/NativeBase/issues/1466#issuecomment-353701808
+     *
+     * @returns {Promise<void>}
+     */
+    async componentDidMount() {
+        await Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+        });
+
+        this.setState({ loading: false });
+
         setLocalNotification();
     }
 
     render() {
+        if (this.state.loading) {
+            return (
+                <View style={{flex: 1}}>
+                    <AppLoading />
+                </View>
+            );
+        }
+
         return (
             <View style={{flex: 1}}>
-                <AppNavigator/>
+                <AppNavigator />
             </View>
         );
     }
